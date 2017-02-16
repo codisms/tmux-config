@@ -44,7 +44,7 @@ Here’s the result:
 ![iterm-select-in-pane-tip.png](doc/iterm-select-in-pane-tip.png)
 
 Here’s the result:
-![iterm-select-in-pane-tip.png](doc/iterm-select-in-pane-tip.png)
+![iterm-select-in-pane-sample.png](doc/iterm-select-in-pane-sample.png)
 
 Note that only the text in the single pane is selected when I use the mouse to select.
 
