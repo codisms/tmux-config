@@ -2,17 +2,10 @@
 
 ## Installation
 ```
-cd ~
-git clone https://github.com/codisms/tmux-config.git .tmux
-cd .tmux
-git submodule init
-git submodule update --init --recursive
-cd ..
-ln -s .tmux/tmux.conf .tmux.conf
+curl -sSL -H 'Cache-Control: no-cache' https://github.com/codisms/tmux-config/raw/master/setup.sh | bash -s [--build]
 ```
 
 ## Notable Options
-* tpm
 * Uses solarized coloring
 * vi copy mode
 * resurrect and continuum plugins

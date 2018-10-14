@@ -1,0 +1,73 @@
+
+SUDO=$(which sudo 2> /dev/null)
+
+CMD_ARGS=()
+declare -A CMD_OPTIONS
+for arg in "$@"; do
+	#echo -- arg = ${arg} ------------------------------
+	if [ "${arg:0:2}" == "--" ]; then
+		arg="${arg:2}"
+		#echo ${arg}
+		key=$arg
+		val=1
+		if [[ "$arg" =~ .*=.* ]]; then
+			IFS='=' read -r -a array <<< "${arg}"
+			key="${array[0]}"
+			val="${array[1]}"
+		fi
+		CMD_OPTIONS[${key}]="${val}"
+	else
+		CMD_ARGS+=("${arg}")
+	fi
+done
+unset arg
+unset key
+unset val
+
+function option_value() {
+	echo "${CMD_OPTIONS[$1]}"
+}
+#   VAL=$(option_value KEY)
+
+function option_set() {
+	if [ "${CMD_OPTIONS[$1]}" != "" ] && [ ${CMD_OPTIONS[$1]} -eq 1 ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+#   IS_SET=$(option_set KEY)
+#   if [ $IS_SET -eq 1 ]; then
+
+function get_package_manager() {
+	local PACKAGE_MANAGER=
+	case "$OSTYPE" in
+		solaris*) PACKAGE_MANAGER=solaris ;;
+		linux*)
+			if [ -f /etc/centos-release ]; then
+				PACKAGE_MANAGER=yum
+			elif [ -n "$(command -v apt-get)" ]; then
+				PACKAGE_MANAGER=apt
+			elif [ -n "$(command -v yum)" ]; then
+				PACKAGE_MANAGER=yum
+			fi
+
+			if [ "${PACKAGE_MANAGER}" == "" ]; then
+				echo "Unable to find yum or apt-get!"
+			fi
+			;;
+		darwin*) PACKAGE_MANAGER=darwin ;;
+		bsd*) PACKAGE_MANAGER=bsd ;;
+	esac
+	echo "${PACKAGE_MANAGER}"
+}
+
+function debug() {
+	if [ $DEBUG -eq 1 ]; then
+		echo -e "\e[3;90m$@\e[0m"
+	fi
+}
+
+function notice() {
+	echo -e "\e[31;5m$@\e[0m"
+}
