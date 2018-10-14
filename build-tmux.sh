@@ -5,13 +5,16 @@ SCRIPTPATH=`pwd`
 source "${SCRIPTPATH}/functions"
 
 VERSION=$(option_value version)
+debug "VERSION = ${VERSION}"
+PACKAGE_MANAGER=$(get_package_manager)
+debug "PACKAGE_MANAGER = ${PACKAGE_MANAGER}"
 
 if [ "${VERSION}" == "" ]; then
 	echo "Querying latest version of tmux..."
 	VERSION=$(curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/tmux/tmux/releases/latest -s | json "tag_name")
 fi
 
-echo -e "\e[36mBuilding tmux v${VERSION}...\e[0m"
+echo -e "\e[36mBuilding tmux ${VERSION}...\e[0m"
 
 
 cd /tmp
