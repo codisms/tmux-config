@@ -34,7 +34,7 @@ cd tmux
 sh autogen.sh --quiet > /dev/null
 #./configure --prefix=/usr/local #--quiet > /dev/null
 ./configure --quiet > /dev/null
-make --quiet > /dev/null
+make -j$(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l) --quiet > /dev/null
 
 echo -e "\e[35mRemoving existing version of vi/vim...\e[0m"
 if [ $PACKAGE_MANAGER == "apt" ]; then
