@@ -2,7 +2,7 @@
 
 ## Installation
 ```
-curl -sSL -H 'Cache-Control: no-cache' https://github.com/codisms/tmux-config/raw/master/setup.sh | bash -s [--build]
+curl -sSL -H 'Cache-Control: no-cache' https://github.com/codisms/tmux-config/raw/master/install.sh | bash -s [--build]
 ```
 
 ## Notable Options
