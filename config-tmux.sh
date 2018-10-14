@@ -4,11 +4,10 @@ cd `dirname $0`
 source ./functions
 
 BUILD=$(option_set build)
-#echo BUILD = ${BUILD}
-VERSION=${option_value version}
+debug BUILD = ${BUILD}
 
 if [ ${BUILD} -eq 1 ]; then
-	${HOME}/.tmux/build-tmux.sh --version=${VERSION}
+	${HOME}/.tmux/build-tmux.sh $@
 fi
 
 echo -e "\e[35mInstalling tmux tools...\e[0m"
