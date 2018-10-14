@@ -5,5 +5,5 @@ if [ ! -d ${HOME}/.tmux ]; then
 	git clone https://github.com/codisms/tmux-config.git ${HOME}/.tmux
 fi
 
-${HOME}/.tmux/config-tmux.sh
+${HOME}/.tmux/config-tmux.sh $@
 
