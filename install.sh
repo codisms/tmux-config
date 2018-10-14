@@ -22,7 +22,7 @@ configTmux() {
 
 	echo -e "\e[35mDownloading tmux configuration to $(pwd)...\e[0m"
 	if [ ! -d .tmux ]; then
-		git clone --depth=1 https://github.com/codisms/tmux-config.git .tmux
+		git clone https://github.com/codisms/tmux-config.git .tmux
 		cd .tmux
 	else
 		cd .tmux
@@ -35,7 +35,7 @@ configTmux() {
 	fi
 
 	echo -e "\e[35mDownloading submodules...\e[0m"
-	git submodule update --init --recursive --depth=1
+	git submodule update --init --recursive
 	cd ..
 }
 
