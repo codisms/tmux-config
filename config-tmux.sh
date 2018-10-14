@@ -37,4 +37,4 @@ echo -e "\e[35mDownloading submodules...\e[0m"
 git submodule update --init --recursive
 cd ..
 
-echo -e "\e[35mDone installing tmux\e[0m"
+echo -e "\e[35mDone configuring tmux\e[0m"

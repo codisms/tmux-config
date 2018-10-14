@@ -50,3 +50,4 @@ $SUDO make install --quiet > /dev/null
 cd ..
 rm -rf tmux
 
+echo -e "\e[35mDone installing tmux\e[0m"
