@@ -1,7 +1,14 @@
 #!/bin/bash
 
-TIME_VAL=$(date +"%H:%M")
+TIME_VAL=$(date +"%H:%M:%S")
 HOST_VAL=$(hostname)
+
+MAIL_COUNT=$(grep 'From:' ${MAIL} | wc -l)
+if [ $MAIL_COUNT -eq 0 ]; then
+	MAIL_COUNT=
+else
+	MAIL_COUNT="*"
+fi
 
 if [ "$(uname)" == "Darwin" ]; then
 	IOSTAT=$(iostat 1 2 | tail -n 1)
@@ -27,4 +34,4 @@ if [ "${MEM_VAL}" = "" ]; then
 	MEM_VAL="<No statistics available>"
 fi
 
-echo "│  ${DISK_VAL}  │  ${MEM_VAL}  │  ${CPU_VAL}  │  ${TIME_VAL}  │  ${HOST_VAL}  "
+echo "│  ${DISK_VAL}  │  ${MEM_VAL}  │  ${CPU_VAL}  │  ${TIME_VAL}  │  ${HOST_VAL}${MAIL_COUNT}  "
