@@ -7,6 +7,3 @@
 [submodule "plugins/tpm"]
 	path = plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "repo/solarized"]
-	path = repo/solarized
-	url = https://github.com/altercation/solarized.git
