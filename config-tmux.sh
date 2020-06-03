@@ -34,7 +34,8 @@ if [ ! -f ${HOME}/.tmux.conf ]; then
 fi
 
 echo -e "\e[35mDownloading submodules...\e[0m"
-git submodule update --init --recursive
+git submodule update --init --recursive --remote
+git submodule update --recursive --remote --merge
 cd ..
 
 echo -e "\e[35mDone configuring tmux\e[0m"
