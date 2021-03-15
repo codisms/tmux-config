@@ -21,12 +21,12 @@ if [ "$(uname)" == "Darwin" ]; then
 	DISK_VAL="$(echo $IOSTAT | awk '{ print "transfer:" $3 "M"; }')  disk:$(df -h | /usr/bin/grep '/$' | awk '{ print $4; }')"
 else
 	VMSTAT=$(vmstat 1 2 | tail -n 1)
-	MAIN_MEMORY=$(cat /proc/meminfo | grep -e 'MemFree' | awk -v RS="" '{ print $2*1024; }' | numfmt --to=iec)
-	SWAP_MEMORY=$(cat /proc/meminfo | grep -e 'SwapFree' | awk -v RS="" '{ print $2*1024; }' | numfmt --to=iec)
+	MAIN_MEMORY=$(cat /proc/meminfo | grep -e 'MemAvailable' | awk -v RS="" '{ print $2*1000; }' | numfmt --to=iec)
+	SWAP_MEMORY=$(cat /proc/meminfo | grep -e 'SwapFree' | awk -v RS="" '{ print $2*1000; }' | numfmt --to=iec)
 
 	MEM_VAL="mem:${MAIN_MEMORY}  swp:${SWAP_MEMORY}"
 	CPU_VAL=$(echo $VMSTAT | awk "{ printf(\"cpu:%d/%d/%d/%d\", \$13, \$14, \$15, \$16) }")
-	DISK_VAL="$(echo $VMSTAT | awk '{ print "read:" $9 "k  write:" $10 "k"; }')  disk:$(df -h | /bin/grep '/$' | awk '{ print $4; }')"
+	DISK_VAL="disk:$(df -h | /bin/grep '/$' | awk '{ print $4; }')  $(echo $VMSTAT | awk '{ print "r:" $9 "k  w:" $10 "k"; }')"
 fi
 
 #HOST_VAL=$(vpn status-line)
