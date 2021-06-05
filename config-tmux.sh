@@ -14,7 +14,7 @@ echo -e "\e[35mInstalling tmux tools...\e[0m"
 #gem --update system
 
 #echo -e "\e[35mInstalling tmuxinator\e[0m"
-gem install tmuxinator > /dev/null
+# gem install tmuxinator > /dev/null
 
 #echo -e "\e[35mConfiguring tmux...\e[0m"
 cd ${HOME}
